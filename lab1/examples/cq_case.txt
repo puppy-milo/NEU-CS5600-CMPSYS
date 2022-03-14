@@ -1,0 +1,10 @@
+encode_enqueue 1 ABC
+dequeue
+encode_enqueue 1 ABC
+dequeue_decode 1
+encode_enqueue 1 A+C
+dequeue_decode 1
+enqueue CS
+enqueue 5600
+encode_enqueue 1 CS
+encode_enqueue 1 5600

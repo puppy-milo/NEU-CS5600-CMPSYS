@@ -1,0 +1,5 @@
+enqueue ABC
+dequeue
+enqueue
+dequeue
+enqueue CDE

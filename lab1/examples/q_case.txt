@@ -1,0 +1,7 @@
+enqueue ABC
+dequeue
+enqueue BDE
+dequeue
+dequeue
+enqueue CS
+enqueue 5600

@@ -1,0 +1,131 @@
+Lab1 - section 2
+---
+
+cmd:
+
+ $ ./caesar [encode|decode] <number> <string>
+
+
+test case:
+
+  $ ./caesar encode 1 ABC
+
+  The expected output is (one line):
+  ```
+  BCD
+  ```
+
+other examples:
+  // note: "=>" split the cmd and outputs
+
+  $ ./caesar decode 1 BCD  =>  ABC
+  $ ./caesar encode 26 ABC =>  ABC
+  $ ./caesar encode 52 ABC =>  ABC
+  $ ./caesar encode 1 AbC =>  BcD
+  $ ./caesar encode 1 059 =>  160
+
+  // note: for lowercased (a-z), uppercased (A-Z), and numbers (0-9), they form
+  // their own "Caesar loops".
+
+  // handling illegal characters
+  $ ./caesar encode 1 A+C+D =>  ILLCHAR
+
+
+Lab1 - section 3
+---
+
+cmd:
+
+  $ ./queue <file>
+
+test case:
+
+  $ cat ./examples/q_case.txt    // show contents of file "./examples/q_case.txt"
+
+  Here is the content of the file "q_case.txt":
+  """
+  enqueue ABC
+  dequeue
+  enqueue BDE
+  dequeue
+  dequeue      // now, queue is empty; must return "NULL"
+  enqueue CS
+  enqueue 5600
+  """
+
+  Run the program (again, "=>" gives the outputs):
+
+  $ ./queue ./examples/q_case.txt
+  =>
+  ABC
+  BDE
+  NULL
+  finally: [CS]->[5600]
+
+  // note:
+  // - enqueue does not produce any output.
+  // - dequeue outputs the head of the queue with a newline ("\n").
+  // - if there is nothing in the queue, dequeue prints "NULL\n".
+  // - if queue is empty in the end of the program,
+  //   the last line of the program's output will be:
+  //   "finally: "
+
+failure case:
+
+  $ cat ./examples/failure_case.txt
+  """
+  enqueue ABC
+  dequeue
+  enqueue
+  dequeue
+  enqueue CDE
+  """
+
+  $ ./queue ./examples/failure_case.txt
+  =>
+  ABC
+  ERROR
+
+  // note:
+  // - when the cmd in the file doesn't make sense (e.g., enqueue without
+  //   any arguments), your program should print "ERROR\n", and quit.
+  // - when encountering errors, you code should quit "gracefully"---don't
+  //   forget to free memory.
+
+
+Lab1 - section 4
+---
+
+cmd:
+
+  $ ./ciphered-queue <file>
+
+test case:
+
+  $ cat ./examples/cq_case.txt
+  """
+  encode_enqueue 1 ABC
+  dequeue
+  encode_enqueue 1 ABC
+  dequeue_decode 1
+  encode_enqueue 1 A+C
+  dequeue_decode 1
+  enqueue CS
+  enqueue 5600
+  encode_enqueue 1 CS
+  encode_enqueue 1 5600
+  """
+
+  $ ./ciphered-queue ./examples/cq_case.txt
+  =>
+  BCD
+  ABC
+  ILLCHAR
+  finally: [CS]->[5600]->[DT]->[6711]
+
+  // note:
+  // - there are four types of cmds: enqueue, dequeue, encode_enqueue, and dequeue_decode.
+  // - the outputs of "enqueue" and "dequeue" are the same as they were in section 3.
+  // - "encode_enqueue" does not produce output.
+  // - "dequeue_decode" produces the decoded version of the queue's head (ending with "\n").
+  // - the failure handling is the same as section 3.

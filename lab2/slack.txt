@@ -1,0 +1,13 @@
+Name: Peng Wang
+NUID: 002981604
+slack hours used: 0
+remaining slack hours: 107
+Challenge (optional): No
+
+Collaborators (who you talked to about the lab, what you talked about):
+Nobody
+
+Source material that you consulted:
+man, google
+
+Other acknowledgments:
