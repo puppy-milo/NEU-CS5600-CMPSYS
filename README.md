@@ -41,16 +41,17 @@ The FUSE driver registers a set of callbacks with the FUSE system (via libfuse a
 
 To recap all of the above: the file system user interacts with the file system roughly in this fashion:
 
-    + When the file system user, Process A, makes a request to the system, such as listing all files in a directory via ls, the ls process issues one or more system calls (stat(), read(), etc.).
++ When the file system user, Process A, makes a request to the system, such as listing all files in a directory via ls, the ls process issues one or more system calls (stat(), read(), etc.).
 
-    + The kernel hands the system call to VFS.
++ The kernel hands the system call to VFS.
 
-    + VFS finds that the system call is referencing a file or directory that is managed by FUSE.
++ VFS finds that the system call is referencing a file or directory that is managed by FUSE.
 
-    + VFS then dispatches the request to FUSE, which dispatches it to the corresponding FUSE driver (which is where you will write your code).
++ VFS then dispatches the request to FUSE, which dispatches it to the corresponding FUSE driver (which is where you will write your code).
 
-    + The FUSE driver handles the request by interacting with the “disk”, which is implemented as an ordinary file. The FUSE driver then responds, and the responses go back through the chain.
-![UI V2](https://github.com/puppy-milo/NEU-CS5600-CMPSYS/Photos/lab4-fuse-diagram.svg)
++ The FUSE driver handles the request by interacting with the “disk”, which is implemented as an ordinary file. The FUSE driver then responds, and the responses go back through the chain.
+
+![lab4-fuse-diagram](https://github.com/puppy-milo/NEU-CS5600-CMPSYS/blob/main/Photos/lab4-fuse-diagram.svg)
 
 
 
